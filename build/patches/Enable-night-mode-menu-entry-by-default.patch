@@ -1,12 +1,28 @@
+From 4ad6eebd3c4697f1be35175eac89f36e2f8d60f1 Mon Sep 17 00:00:00 2001
 From: csagan5 <32685696+csagan5@users.noreply.github.com>
 Date: Sun, 14 Apr 2019 12:02:57 +0200
-Subject: Enable night mode menu entry by default
+Subject: [PATCH] Enable night mode menu entry by default
 
 ---
- chrome/browser/android/chrome_feature_list.cc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../java/src/org/chromium/chrome/browser/util/FeatureUtilities.java     | 2 +-
+ chrome/browser/android/chrome_feature_list.cc                           | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/util/FeatureUtilities.java b/chrome/android/java/src/org/chromium/chrome/browser/util/FeatureUtilities.java
+index d9edef0..41ef5a8 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/util/FeatureUtilities.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/util/FeatureUtilities.java
+@@ -398,7 +398,7 @@ public class FeatureUtilities {
+             ChromePreferenceManager prefManager = ChromePreferenceManager.getInstance();
+ 
+             sIsNightModeAvailable = prefManager.readBoolean(
+-                    ChromePreferenceManager.NIGHT_MODE_AVAILABLE_KEY, false);
++                    ChromePreferenceManager.NIGHT_MODE_AVAILABLE_KEY, true);
+         }
+         return sIsNightModeAvailable;
+     }
 diff --git a/chrome/browser/android/chrome_feature_list.cc b/chrome/browser/android/chrome_feature_list.cc
+index a78412a..9b372d4 100644
 --- a/chrome/browser/android/chrome_feature_list.cc
 +++ b/chrome/browser/android/chrome_feature_list.cc
 @@ -222,7 +222,7 @@ const base::Feature kAdjustWebApkInstallationSpace = {
@@ -19,5 +35,5 @@ diff --git a/chrome/browser/android/chrome_feature_list.cc b/chrome/browser/andr
  const base::Feature kAndroidNightModeCCT{"AndroidNightModeCCT",
                                           base::FEATURE_ENABLED_BY_DEFAULT};
 -- 
-2.11.0
+2.7.4
 
